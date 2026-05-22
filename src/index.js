@@ -39,6 +39,7 @@ const organizacionRoutes = require('./organizacion/organizacion.routes');
 const dashboardRoutes = require('./dashboard/dashboard.routes');
 const oraculoRoutes = require('./oraculo/oraculo.routes');
 const aprendizajeRoutes = require('./aprendizaje/aprendizajeRoutes');
+const edicionServidoresRoutes = require('./edicionServidores/edicionServidores.routes');
 
 // ============================================================================
 // CONFIGURACIÓN
@@ -111,7 +112,7 @@ app.get('/api/centinela-banco-pruebas/estado', async (req, res) => {
         },
         modules: [
           'instalacion', 'mantenimiento', 'auditoria', 'aprendizaje', 
-          'informes', 'robot', 'expediente', 'cliente', 'red', 'organizacion'
+          'informes', 'robot', 'expediente', 'cliente', 'red', 'organizacion', 'edicion_servidores'
         ]
       }
     });
@@ -162,6 +163,7 @@ app.use('/api/centinela-banco-pruebas/organizacion', organizacionRoutes);
 app.use('/api/centinela-banco-pruebas/dashboard', dashboardRoutes);
 app.use('/api/centinela-banco-pruebas/oraculo', oraculoRoutes);
 app.use('/api/centinela-banco-pruebas/aprendizaje', aprendizajeRoutes);
+app.use('/api/centinela-banco-pruebas/edicion-servidores', edicionServidoresRoutes);
 
 // ============================================================================
 // MANEJO DE ERRORES
