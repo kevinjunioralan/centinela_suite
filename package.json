@@ -1,0 +1,38 @@
+{
+  "name": "centinela-banco-pruebas-backend",
+  "version": "1.0.0",
+  "description": "Backend del módulo Centinela Banco de Pruebas",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
+    "test": "echo \"No hay tests definidos\" && exit 0",
+    "test:contracts:arquitectura": "node --test src/arquitectura/arquitectura.contract.test.js",
+    "test:contracts:auditoria": "node --test src/auditor/auditor.contract.test.js",
+    "test:contracts:informes": "node --test src/informes/informes.historial.contract.test.js",
+    "test:contracts:mantenimiento": "node --test src/mantenimiento/mantenimiento.contract.test.js",
+    "test:contracts:instalacion": "node --test src/instalacion/instalacion.contract.test.js src/instalacion/InstalacionService.lifecycle.test.js src/instalacion/InstaladorSSH.packConfig.test.js",
+    "test:contracts:expediente-estados": "node --test src/expediente/ExpedienteService.state.test.js",
+    "test:contracts:expediente-http": "node --test src/expediente/expediente.estado.http.contract.test.js",
+    "test:contracts:all": "npm run test:contracts:arquitectura && npm run test:contracts:auditoria && npm run test:contracts:informes && npm run test:contracts:mantenimiento && npm run test:contracts:instalacion && npm run test:contracts:expediente-estados && npm run test:contracts:expediente-http",
+    "test:pre-release": "node scripts/pre-release-check.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.4.1",
+    "pdfkit": "^0.18.0",
+    "request-ip": "^3.3.0",
+    "ssh2": "^1.17.0",
+    "uuid": "^13.0.0"
+  }
+}
