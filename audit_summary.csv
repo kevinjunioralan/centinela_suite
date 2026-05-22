@@ -1,0 +1,22 @@
+Módulo | Rutas | Controlador | Servicio | Informes | Auditoría | Aprendizaje | Seguridad | Observaciones
+aislamiento | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+aprendizaje | NO | SI | NO | NO | PARCIAL | NO |  Falta rutas; Falta informes; Falta auditoría;
+arquitectura | SI | SI | NO | NO | NO | NO |  Falta informes; Falta auditoría; Falta aprendizaje;
+auditor | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+auditoria | SI | SI | NO | PARCIAL | NO | NO |  Falta informes; Falta aprendizaje;
+auth | SI | SI | NO | NO | NO | SI |  Falta informes; Falta auditoría; Falta aprendizaje;
+cliente | SI | NO | NO | NO | NO | SI |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+core | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+expediente | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+informes | SI | SI | PARCIAL | NO | NO | NO |  Falta auditoría; Falta aprendizaje;
+instalacion | SI | SI | NO | NO | NO | NO |  Falta informes; Falta auditoría; Falta aprendizaje;
+integracion | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+mantenimiento | SI | SI | NO | NO | NO | NO |  Falta informes; Falta auditoría; Falta aprendizaje;
+organizacion | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+patrones | NO | SI | NO | NO | NO | NO |  Falta rutas; Falta informes; Falta auditoría; Falta aprendizaje;
+pruebas | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+red | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+robot | SI | SI | NO | NO | NO | NO |  Falta informes; Falta auditoría; Falta aprendizaje;
+seguridad | SI | NO | NO | NO | NO | NO |  Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
+services | NO | SI | PARCIAL | NO | NO | NO |  Falta rutas; Falta auditoría; Falta aprendizaje;
+ssh | NO | NO | NO | NO | NO | NO |  Falta rutas; Falta controlador/service; Falta informes; Falta auditoría; Falta aprendizaje;
