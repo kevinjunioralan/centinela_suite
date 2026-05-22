@@ -1,0 +1,55 @@
+name: Backend Quick Quality
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - scripts/**
+      - package.json
+      - package-lock.json
+      - .github/workflows/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - src/**
+      - scripts/**
+      - package.json
+      - package-lock.json
+      - .github/workflows/**
+  workflow_dispatch:
+
+concurrency:
+  group: backend-quick-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quick-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax check (src + scripts)
+        shell: bash
+        run: |
+          find src scripts -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: Quick contracts
+        run: |
+          npm run test:contracts:arquitectura
+          npm run test:contracts:auditoria
+          npm run test:contracts:informes
