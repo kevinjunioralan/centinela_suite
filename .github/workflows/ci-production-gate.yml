@@ -1,0 +1,73 @@
+name: CI Production Gate
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-production-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install backend dependencies
+        run: npm ci
+
+      - name: Run backend contract suite
+        run: npm run test:contracts:all
+
+      - name: Run backend unit tests
+        run: npm run test:unit:mantenimiento && npm run test:unit:instalacion
+
+  production-readiness:
+    runs-on: ubuntu-latest
+    needs:
+      - backend-quality
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install backend dependencies
+        run: npm ci
+
+      - name: Run readiness gate (fallback-safe)
+        shell: bash
+        run: |
+          if [ -d ../frontend ]; then
+            echo "[CI] Frontend sibling detected: running consolidated readiness"
+            npm run ops:production:readiness
+          else
+            echo "[CI] Frontend sibling not found: running backend production gate"
+            npm run ops:production:gate
+          fi
+
+      - name: Upload readiness reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ops-readiness-reports-${{ github.run_id }}
+          if-no-files-found: warn
+          path: |
+            temp/ops-readiness-*.md
+            temp/ops-gate-backend-*.md
+            temp/ops-gate-frontend-*.md
