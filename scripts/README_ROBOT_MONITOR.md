@@ -17,6 +17,27 @@ Criterio de aprobacion:
 
 Si este gate falla, no se aprueba release ni despliegue.
 
+## Hardening block integral (recomendado pre-release)
+
+Para ejecutar endurecimiento de punta a punta en un solo comando:
+
+```bash
+cd backend
+npm run ops:hardening:block
+```
+
+Criterio de aprobacion:
+
+- Resultado final `PASS`.
+- Reporte maestro en `backend/temp/ops-hardening-block-*.md`.
+- Evidencia por etapa en readiness, UX, contingencia y riesgo residual.
+
+Guia de interpretacion de fallos por etapa:
+
+```bash
+cat NOTA_HARDENING_BLOCK_PRODUCCION.md
+```
+
 ## ⚡ Forma rápida: Script Orquestador
 
 Todo en uno en la VM:
