@@ -54,6 +54,8 @@ function extractReportPath(output) {
 
 function main() {
   const steps = [];
+  const strictContingencyDefault =
+    process.env.CI === '1' || process.platform === 'linux' ? '1' : '0';
 
   steps.push(runStep(
     'Consolidated readiness gate',
@@ -79,7 +81,8 @@ function main() {
     ['scripts/ops-contingency-drill.js'],
     backendRoot,
     {
-      CONTINGENCY_FAIL_ON_SKIPPED: process.env.CONTINGENCY_FAIL_ON_SKIPPED || '0'
+      CONTINGENCY_FAIL_ON_SKIPPED:
+        process.env.CONTINGENCY_FAIL_ON_SKIPPED || strictContingencyDefault
     }
   ));
   steps[steps.length - 1].reportPath = extractReportPath(steps[steps.length - 1].output);
